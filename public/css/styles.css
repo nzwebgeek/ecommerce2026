@@ -152,3 +152,8 @@ nav.navbar-custom-padding{
   color: navy;
   margin-bottom: 1rem;
 }
+
+/* Extra vertical offset for specific pages that need content pushed down further */
+.page-offset-large {
+  margin-top: 3.5rem;
+}
