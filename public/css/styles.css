@@ -4,9 +4,9 @@
     overflow: visible;
 }
 
-/* Ensure content clears the fixed-top navbar with minimal wasted space */
+/* Ensure content clears the fixed-top navbar so page titles are fully visible */
 body {
-  padding-top: 2.75rem; /* smaller offset so content sits closer to nav */
+  padding-top: 4rem; /* base offset for small & medium screens */
 }
 
  
@@ -68,7 +68,7 @@ nav.navbar-custom-padding{
 }
 .container {
   /* Keep content centered and less bulky on wide screens */
-  margin: 20px auto 25px auto;
+  margin: 30px auto 25px auto;
   padding-left: 15px;
   padding-right: 15px;
   max-width: 1140px;
@@ -78,6 +78,36 @@ nav.navbar-custom-padding{
   /* Prevent containers from stretching too wide on very large displays */
   .container {
     max-width: 960px;
+  }
+}
+
+/* Desktop-specific refinements for a tidy responsive layout */
+@media (min-width: 992px) {
+  /* Slightly reduce offset on larger screens where navbar is very slim */
+  body {
+    padding-top: 3.25rem;
+  }
+
+  /* Give desktop containers a bit more breathing room but keep them centered */
+  .container {
+    margin: 40px auto 30px auto;
+    max-width: 1140px;
+  }
+
+  /* Make nav text a touch larger on desktop for readability */
+  .navbar.navbar-skinny .navbar-brand,
+  .navbar.navbar-skinny .nav-link {
+    font-size: 1rem;
+  }
+
+  /* Ensure product cards form a clean grid with consistent height on desktop */
+  .card.product-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card.product-card .card-body {
+    flex-grow: 1;
   }
 }
 
@@ -105,4 +135,20 @@ nav.navbar-custom-padding{
 .card.product-card img {
   max-height: 180px;
   object-fit: cover;
+}
+
+/* --- Page-level layout helpers --- */
+.page-section {
+  background-color: slategrey;
+  border-radius: 4px;
+}
+
+.page-section-inner {
+  background-color: dimgray;
+  border-radius: 4px;
+}
+
+.page-header-title {
+  color: navy;
+  margin-bottom: 1rem;
 }
