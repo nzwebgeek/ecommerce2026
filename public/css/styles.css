@@ -1,0 +1,108 @@
+.caption{
+    /* Keep captions visible but not excessively tall */
+    min-height: 260px;
+    overflow: visible;
+}
+
+/* Ensure content clears the fixed-top navbar without huge spacing */
+body {
+  padding-top: 3.25rem; /* tuned for skinny navbar height */
+}
+
+ 
+.carousel,
+.carousel-inner,
+.carousel-inner .item,
+.carousel-inner img {
+    width: 100%;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.thumbnail {
+    height: auto !important;
+}
+.thumbnail img {
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+.thumbnail {
+    height: auto;
+    overflow: visible;
+}
+
+.navbar-toggler {
+    padding: .15rem .4rem;
+    font-size: .8rem;
+}
+nav.navbar-custom-padding{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: large;
+}
+
+.navbar-custom-padding {
+  padding-top: 0.2rem; /* Example: reduced top padding */
+  padding-bottom: 0.2rem; /* Example: reduced bottom padding */
+  /* You can also target specific elements inside, e.g., */
+  /* .navbar-custom-padding .nav-link { padding-left: 0.5rem; padding-right: 0.5rem; } */
+}
+
+/* Skinny top navbar variant */
+.navbar.navbar-skinny {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  min-height: 2.5rem;
+}
+
+/* Tighten brand and links only inside skinny navbars */
+.navbar.navbar-skinny .navbar-brand,
+.navbar.navbar-skinny .nav-link {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0.9rem;
+}
+.container {
+  /* Keep content centered and less bulky on wide screens */
+  margin: 40px auto 30px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1140px;
+}
+
+@media (min-width: 1400px) {
+  /* Prevent containers from stretching too wide on very large displays */
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Compact product cards for shop & category listings */
+.card.product-card {
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.card.product-card .card-body {
+  padding: 0.5rem 0.75rem;
+}
+
+.card.product-card .card-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.card.product-card .card-text {
+  font-size: 0.85rem;
+  max-height: 3.5rem;
+  overflow: hidden;
+}
+
+.card.product-card img {
+  max-height: 180px;
+  object-fit: cover;
+}
