@@ -1,0 +1,232 @@
+/*!
+ * Start Bootstrap - SB Admin Bootstrap Admin Template
+ * Licensed under Apache License v2.0
+ */
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+body {
+    margin-top: 100px;
+    background-color: #222;
+}
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background: #fff;
+}
+
+.huge {
+    font-size: 40px;
+    line-height: normal;
+}
+
+@media (min-width: 768px) {
+
+    body {
+        margin-top: 50px;
+    }
+
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+/* =====================================================
+   TOP NAVIGATION
+===================================================== */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav > li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav > li > a {
+    padding: 15px 0;
+    line-height: 20px;
+    color: #999;
+}
+
+.top-nav > li > a:hover,
+.top-nav > li > a:focus,
+.top-nav > .open > a,
+.top-nav > .open > a:hover,
+.top-nav > .open > a:focus {
+    color: #fff;
+    background-color: #000;
+}
+
+.top-nav > .open > .dropdown-menu {
+    position: absolute;
+    float: left;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0 0 4px 4px;
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav > .open > .dropdown-menu > li > a {
+    white-space: normal;
+}
+
+/* Dropdown content */
+
+ul.message-dropdown {
+    padding: 0;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+li.message-preview {
+    width: 275px;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+li.message-preview > a {
+    padding: 15px 0;
+}
+
+li.message-footer {
+    margin: 5px 0;
+}
+
+ul.alert-dropdown {
+    width: 200px;
+}
+
+/* =====================================================
+   SIDE NAVIGATION
+===================================================== */
+
+@media (min-width: 768px) {
+
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        left: 0;
+        width: 225px;
+        height: 100%;
+        overflow-y: auto;
+        background: #222;
+        border: none;
+        border-radius: 0;
+    }
+
+    .side-nav > li > a {
+        width: 225px;
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+        background: #000 !important;
+    }
+}
+
+.side-nav > li > ul {
+    padding: 0;
+}
+
+.side-nav > li > ul > li > a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #999;
+}
+
+.side-nav > li > ul > li > a:hover {
+    color: #fff;
+}
+
+/* =====================================================
+   CHARTS
+===================================================== */
+
+.flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* =====================================================
+   COLORED PANELS
+===================================================== */
+
+/* Green */
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green .panel-heading {
+    color: #fff;
+    background: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.panel-green a {
+    color: #5cb85c;
+}
+
+.panel-green a:hover {
+    color: #3d8b3d;
+}
+
+/* Red */
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red .panel-heading {
+    color: #fff;
+    background: #d9534f;
+    border-color: #d9534f;
+}
+
+.panel-red a {
+    color: #d9534f;
+}
+
+.panel-red a:hover {
+    color: #b52b27;
+}
+
+/* Yellow */
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow .panel-heading {
+    color: #fff;
+    background: #f0ad4e;
+    border-color: #f0ad4e;
+}
+
+.panel-yellow a {
+    color: #f0ad4e;
+}
+
+.panel-yellow a:hover {
+    color: #df8a13;
+}

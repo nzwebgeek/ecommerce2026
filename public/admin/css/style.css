@@ -1,0 +1,59 @@
+body{
+  background-color: black;
+}
+#page-wrapper {
+  background-color: #F1F1F1 !important;
+}
+
+
+
+.product_image {
+
+width: 200px !important;
+height: 100px !important;
+
+
+}
+
+#admin_sidebar .form-group {
+
+background-color: #fff;
+padding: 8px;
+
+}
+
+#admin_sidebar .form-group hr {
+
+margin-top: 10px;
+margin-bottom: 10px;
+
+
+}
+
+#admin_sidebar .btn{
+
+width: 49%;
+
+}
+
+header{
+  display: flex;
+  justify-content: center; /* Horizontally centers the card */
+  align-items: center;     /* Vertically centers the card */
+  height: 100vh;  
+}
+
+.side-nav {
+    min-height: 100vh;
+    background: #343a40;
+}
+
+.side-nav .nav-link {
+    color: #adb5bd;
+}
+
+.side-nav .nav-link:hover,
+.side-nav .nav-item.active .nav-link {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+}
