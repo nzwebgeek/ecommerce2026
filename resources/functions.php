@@ -1,5 +1,16 @@
 <?php
+// Removed PHPMailer dependency - using basic mail() function instead
+
 $upload_directory = "uploads";
+
+// Email configuration constants
+if (!defined('EMAIL_FROM_EMAIL')) {
+    define('EMAIL_FROM_EMAIL', 'noreply@yourdomain.com');
+}
+if (!defined('EMAIL_FROM_NAME')) {
+    define('EMAIL_FROM_NAME', 'Your Website Name');
+}
+
 // Helper functions
 function last_id(){
     global $connection;
@@ -89,7 +100,7 @@ DELIMETER;
 
 function display_image($picture){
 global $upload_directory;
-return $upload_directory . DS . $picture;
+return $upload_directory . DIRECTORY_SEPARATOR . $picture;
 
 
 }
@@ -164,38 +175,101 @@ function login_user(){
         $username = escape_string($_POST['username']);
         $password = escape_string($_POST['password']);
 
-        $query = query("SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}' ");
+        $query = query("SELECT * FROM users WHERE username = '{$username}' ");
         confirm($query);
 
         if(mysqli_num_rows($query) == 0) {
             set_message("Your Password or Username are wrong");
             redirect("login.php");
         } else {
-            $_SESSION['username'] = $username;
-            set_message("Welcome to Admin {$username}");
-            redirect("admin");
+            $row = fetch_array($query);
+            if(password_verify($password, $row['user_password'])) {
+                $_SESSION['username'] = $username;
+                set_message("Welcome to Admin {$username}");
+                redirect("admin");
+            } else {
+                set_message("Your Password or Username are wrong");
+                redirect("login.php");
+            }
         }
     }
-} 
+}
 
 function send_message(){
     if(isset($_POST['submit'])) {
-        $to          = "    ";
         $name        = $_POST['name'];
         $email       = $_POST['email'];
         $subject     = $_POST['subject'];
         $message     = $_POST['message'];
-
-        $headers = "From: {$name} {$email}";
-
-        if(mail($to, $subject, $message, $headers)) {
-            set_message("Your Message has been sent");
+        
+        // Use Gmail SMTP to send email
+        $result = send_email_gmail($email, $name, $subject, $message);
+        
+        if($result) {
+            set_message("Your Message has been sent successfully!");
             redirect("contact.php");
         } else {
-            set_message("Your Message was not sent");
+            set_message("Failed to send message. Please try again.");
             redirect("contact.php");
         }
     }
+}
+
+function send_email_gmail($to_email, $to_name, $subject, $message, $from_email = null, $from_name = null) {
+    // Use default sender if not provided
+    if (!$from_email) {
+        $from_email = EMAIL_FROM_EMAIL;
+        $from_name = EMAIL_FROM_NAME;
+    }
+    
+    // Email headers
+    $headers = "From: {$from_name} <{$from_email}>\r\n";
+    $headers .= "Reply-To: {$to_name} <{$to_email}>\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    
+    // Email body with HTML formatting
+    $email_body = "
+    <html>
+    <head>
+        <title>{$subject}</title>
+    </head>
+    <body>
+        <h2>New Contact Form Message</h2>
+        <p><strong>Name:</strong> {$to_name}</p>
+        <p><strong>Email:</strong> {$to_email}</p>
+        <p><strong>Subject:</strong> {$subject}</p>
+        <hr>
+        <p><strong>Message:</strong></p>
+        <p>" . nl2br(htmlspecialchars($message)) . "</p>
+        <hr>
+        <p><em>This message was sent from your website contact form.</em></p>
+    </body>
+    </html>
+    ";
+    
+    // Use basic mail() function
+    return mail($to_email, $subject, $email_body, $headers);
+}
+
+// Enhanced email function for different types of emails
+function send_notification_email($to_email, $to_name, $subject, $message, $email_type = 'general') {
+    switch($email_type) {
+        case 'order_confirmation':
+            $subject = "Order Confirmation - " . $subject;
+            $message = "<h3>Thank you for your order!</h3><p>Your order has been received and is being processed.</p><p>Order Details: {$message}</p>";
+            break;
+        case 'password_reset':
+            $subject = "Password Reset Request";
+            $message = "<h3>Password Reset</h3><p>To reset your password, click the link below:</p><p>{$message}</p>";
+            break;
+        case 'user_registration':
+            $subject = "Welcome to Our Website!";
+            $message = "<h3>Welcome {$to_name}!</h3><p>Thank you for registering with us. Your account has been created successfully.</p><p>Your login details: Email: {$to_email}</p>";
+            break;
+    }
+    
+    return send_email_gmail($to_email, $to_name, $subject, $message);
 }
 /*Back End Functions*/
 
@@ -235,8 +309,7 @@ while($row = fetch_array($query)){
  $product_image = display_image($row['product_image']);
     
  $product = <<<DELIMETER
-<br> <br>       
-<br>       
+     
         <tr>
             <td>{$row['product_id']}</td>
             <td>{$row['product_title']} <br>
@@ -400,7 +473,7 @@ echo $category;
         $email = $row['email'];
 
         $user = <<< DELIMETER
-        <br> <br>   <br>       
+              
      
         <tr>
             <td>{$user_id}</td>
@@ -425,7 +498,7 @@ echo $category;
       
        // move_uploaded_file($photo_temp, UPLOAD_DIRECTORY . DS . $user_photo);
 
-        $query = query("INSERT INTO users(username,email,password) VALUES('{$username}','{$email}','{$password}')");
+        $query = query("INSERT INTO users(username,email,user_password) VALUES('{$username}','{$email}','{$password}')");
         confirm($query);
         set_message('User Created!');
         redirect('index.php?user');
@@ -442,7 +515,7 @@ confirm($query);
 while($row = fetch_array($query)){
     
  $report = <<<DELIMETER
-        <br> <br>       
+            
         <tr>
             <td>{$row['report_id']}</td>
             <td>{$row['product_id']}</td>
