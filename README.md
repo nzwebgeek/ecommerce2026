@@ -1,4 +1,1 @@
-# ecom
-# cms
-This site is an ecommerce site template, setup for the purpose of future deployment for a small business.
-
+This project is mostly hand coded, it has the functions of a content management system and serves primarily as a ecommerce site intended for a small business.
