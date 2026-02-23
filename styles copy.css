@@ -1,0 +1,64 @@
+.caption{
+    height: 1200px;
+}
+
+.caption {
+    overflow: visible;
+}
+
+ 
+.carousel,
+.carousel-inner,
+.carousel-inner .item,
+.carousel-inner img {
+    width: 100%;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.thumbnail {
+    height: auto !important;
+}
+.thumbnail img {
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+.thumbnail {
+    height: auto;
+    overflow: visible;
+}
+
+.navbar-toggler {
+    padding: .15rem .4rem;
+    font-size: .8rem;
+}
+nav.navbar-custom-padding{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: large;
+}
+
+.navbar-custom-padding {
+  padding-top: 0.2rem; /* Example: reduced top padding */
+  padding-bottom: 0.2rem; /* Example: reduced bottom padding */
+  /* You can also target specific elements inside, e.g., */
+  /* .navbar-custom-padding .nav-link { padding-left: 0.5rem; padding-right: 0.5rem; } */
+}
+
+.navbar {
+  padding-top: 0.25rem;    /* Default is ~0.5rem */
+  padding-bottom: 0.25rem;
+}
+
+/* To also tighten the brand and links */
+.navbar-brand, .nav-link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.container{
+    margin: 100px;
+}
